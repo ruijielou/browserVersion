@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>检测浏览器</title>
+
+</head>
+
+<body>
+    <script>
+    function myBrowser() {
+        var browser = '';
+        var version = 0;
+        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+
+        if (userAgent.indexOf("Edge") > -1) {
+
+            version = parseFloat(userAgent.match(/ Edge\/(\d+)/)[1]);
+
+            browser = "浏览器名称：Edge " + "<br>" + "浏览器版本：" + version;
+            return browser
+        }; //判断是否Edge浏览器
+        if (userAgent.indexOf("OPR") > -1) {
+
+            version = parseFloat(userAgent.match(/ OPR\/(\d+)/)[1]);
+            browser = "浏览器名称：Opera " + "<br>" + "浏览器版本：" + version;
+            return browser;
+
+        }; //判断是否Opera浏览器
+        if (userAgent.indexOf("Firefox") > -1) {
+            version = parseFloat(userAgent.match(/ Firefox\/(\d+)/)[1]);
+            browser = "浏览器名称：Firefox " + "<br>" + "浏览器版本：" + version;
+            return browser;
+
+        } //判断是否Firefox浏览器
+        if (userAgent.indexOf("Chrome") > -1) {
+
+            version = parseFloat(userAgent.match(/ Chrome\/(\d+)/)[1]);
+            browser = "浏览器名称：Chrome " + "<br>" + "浏览器版本：" + version;
+            return browser;
+        }
+        if (userAgent.indexOf("Safari") > -1) {
+
+            version = userAgent.match(/ Safari\/(\d+)/)[1];
+            browser = "浏览器名称：Safari " + "<br>" + "浏览器版本：" + version;
+            return browser;
+        } //判断是否Safari浏览器
+        if (userAgent.indexOf("Trident") > -1) {
+
+            if (userAgent.match(/MSIE ((\d\.?)+)/) == null) {
+                version = 11;
+            } else {
+                version = userAgent.match(/MSIE ((\d\.?)+)/)[1];
+            };
+            browser = "浏览器名称：IE " + "<br>" + "浏览器版本：" + version;
+            return browser;
+        }; //判断是否IE浏览器
+
+
+    }
+    document.write("浏览器信息：" + navigator.userAgent + "<br>")
+    document.write("浏览器名称：" + myBrowser());
+
+    </script>
+</body>
+
+</html>
