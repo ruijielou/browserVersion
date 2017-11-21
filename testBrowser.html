@@ -10,57 +10,86 @@
 <body>
     <script>
     function myBrowser() {
-        var browser = '';
-        var version = 0;
+        var browser = '未识别浏览器';
+        var version = '未知';
         var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+
+        function testGecko() {
+            var geckos = '未知'
+            if(userAgent.indexOf('Trident') > -1 ) {
+               geckos = "Trident"
+               return geckos
+            }
+             if(userAgent.indexOf('AppleWebKit') > -1) {
+                 geckos = "webkit"
+                 return geckos
+            }
+            if(userAgent.indexOf('OPR') > -1) {
+                if(userAgent.indexOf('Gecko') > -1) {
+                    geckos = "Gecko"
+                }
+
+                return geckos
+            }
+
+            if(userAgent.indexOf('Gecko') > -1) {
+                geckos = "Gecko"
+                 return geckos
+            }
+
+        }
+
 
         if (userAgent.indexOf("Edge") > -1) {
 
             version = parseFloat(userAgent.match(/ Edge\/(\d+)/)[1]);
 
-            browser = "浏览器名称：Edge " + "<br>" + "浏览器版本：" + version;
+            Gecko = testGecko()
+
+            browser = "浏览器名称：Edge " + "<br>" + "浏览器版本：" + version + "<br>" + "浏览器内核：" + Gecko;
             return browser
         }; //判断是否Edge浏览器
         if (userAgent.indexOf("OPR") > -1) {
-
+            Gecko = testGecko()
             version = parseFloat(userAgent.match(/ OPR\/(\d+)/)[1]);
-            browser = "浏览器名称：Opera " + "<br>" + "浏览器版本：" + version;
+            browser = "浏览器名称：Opera " + "<br>" + "浏览器版本：" + version + "<br>" +"浏览器内核：" + Gecko;
             return browser;
 
         }; //判断是否Opera浏览器
         if (userAgent.indexOf("Firefox") > -1) {
+             Gecko = testGecko()
             version = parseFloat(userAgent.match(/ Firefox\/(\d+)/)[1]);
-            browser = "浏览器名称：Firefox " + "<br>" + "浏览器版本：" + version;
+            browser = "浏览器名称：Firefox " + "<br>" + "浏览器版本：" + version + "<br>" + "浏览器内核：" + Gecko;
             return browser;
 
         } //判断是否Firefox浏览器
         if (userAgent.indexOf("Chrome") > -1) {
-
+            Gecko = testGecko()
             version = parseFloat(userAgent.match(/ Chrome\/(\d+)/)[1]);
-            browser = "浏览器名称：Chrome " + "<br>" + "浏览器版本：" + version;
+            browser = "浏览器名称：Chrome " + "<br>" + "浏览器版本：" + version + "<br>" + "浏览器内核：" + Gecko;
             return browser;
         }
         if (userAgent.indexOf("Safari") > -1) {
-
+            Gecko = testGecko()
             version = userAgent.match(/ Safari\/(\d+)/)[1];
-            browser = "浏览器名称：Safari " + "<br>" + "浏览器版本：" + version;
+            browser = "浏览器名称：Safari " + "<br>" + "浏览器版本：" + version + "<br>" + "浏览器内核：" + Gecko;
             return browser;
         } //判断是否Safari浏览器
         if (userAgent.indexOf("Trident") > -1) {
-
+            Gecko = testGecko()
             if (userAgent.match(/MSIE ((\d\.?)+)/) == null) {
-                version = 11;
+                 version = userAgent.match(/rv:([\d\.]+)/)[1];
             } else {
                 version = userAgent.match(/MSIE ((\d\.?)+)/)[1];
             };
-            browser = "浏览器名称：IE " + "<br>" + "浏览器版本：" + version;
+            browser = "浏览器名称：IE " + "<br>" + "浏览器版本：" + version + "<br>" + "浏览器内核：" + Gecko;
             return browser;
         }; //判断是否IE浏览器
 
 
     }
     document.write("浏览器信息：" + navigator.userAgent + "<br>")
-    document.write("浏览器名称：" + myBrowser());
+    document.write(myBrowser());
 
     </script>
 </body>
