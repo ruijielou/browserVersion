@@ -48,6 +48,14 @@
             return browser
 
         }; //判断是否Edge浏览器
+        if (userAgent.indexOf("QQBrowser") > -1) {
+
+            version = parseFloat(userAgent.match(/ QQBrowser\/(\d+)/)[1]);
+            Gecko = testGecko();
+            browser = "浏览器名称：QQBrowser " + "<br>" + "浏览器版本：" + version + "<br>" + "浏览器内核：" + Gecko;
+            return browser
+
+        }; //判断是否QQ浏览器
         if (userAgent.indexOf("OPR") > -1) {
 
             Gecko = testGecko();
